@@ -73,10 +73,10 @@ def name_of_folder_of_size(in_path, in_size):
 def meta_sorting_core(sorting_func):
     count_file = 0
 
-    path = temp_file  # преобразуем запрошенный путь в рабочий
-    files = os.listdir(path) # запрашиваем все файлы по заданному пути
+    path = temp_file  
+    files = os.listdir(path) 
     for file_name in files:
-        if os.path.splitext(file_name)[1][1:] == "": # проверка является ли это папкой
+        if os.path.splitext(file_name)[1][1:] == "": 
             continue
         
         file_data = get_file_metadata(path, file_name, ['Name', 'Size', 'Item type', 'Date modified', 'Date created']) 
@@ -99,14 +99,14 @@ def meta_sorting_core(sorting_func):
             if file_data['Date created'] == None:
                 continue
         
+
+        if not os.path.exists(path1): 
+            os.mkdir(path1) 
         
-        if not os.path.exists(path1): # проверяем наличие каталога по заданному паттерну
-            os.mkdir(path1) # солдаём каталог по заданному паттерну
+        os.chdir(path) 
+        shutil.move(path + '/' + file_name, path1) 
         
-        os.chdir(path) # выходим из директорию для сортировки
-        shutil.move(path + '/' + file_name, path1) # переносим файл из начальной дирикторию в дирикторию расширения
-        
-        count_file += 1 # со сколькью файлами мы взаимодействовали
+        count_file += 1 
     if count_file == 0:
         tkinter.messagebox.showinfo(title="Attention", message="There is nothing to sort in the folder")
     if len(temp_file) > 0 and count_file != 0:
