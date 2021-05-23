@@ -8,6 +8,13 @@ import win32com.client
 temp_file = ''
 path = ''
 select_folder = 'Select folder ===>'
+all_dictionarys = {
+  '0': ['байт', 'byte', 'Byte', 'Байт'],
+  '1': ['КБ', 'kB', 'KB', 'kb'],
+  '2': ['МБ', 'mB', 'MB', 'mb'],
+  '3': ['ГБ', 'gB', 'GB', 'gb'],
+  '4': ['ТБ', 'tB', 'TB', 'tb']
+}
 
 
 def tf():
@@ -44,16 +51,9 @@ def get_file_metadata(path, filename, metadata):
 
 
 def convert_size_to_str(p):
-    if p[1] =='КБ' or p[1] =='kB' or p[1] =='KB' or p[1] =='kb':
-        return float(p[0].replace(',', '.'))* 1024
-    elif p[1] =='МБ' or p[1] =='MB' or p[1] =='mB' or p[1] =='mb':
-        return float(p[0].replace(',', '.'))* 1024**2
-    elif p[1] =='ГБ' or p[1] =='gB' or p[1] =='GB' or p[1] =='gb':
-        return float(p[0].replace(',', '.'))* 1024**3
-    elif p[1] =='ТБ' or p[1] =='tB' or p[1] =='TB' or p[1] =='tb':
-        return float(p[0].replace(',', '.'))* 1024**4
-    elif p[1] =='байт' or p[1] =='byte' or p[1] =='Byte' or p[1] =='Байт':
-        return float(p[0].replace(',', '.'))
+    for size in all_dictionarys:
+        if p[1] in all_dictionarys[size]:
+            return float(p[0].replace(',', '.'))* 1024**int(size)
 
 
 def name_of_folder_of_size(in_path, in_size):
