@@ -1,1 +1,1 @@
-pyinstaller main.py -F -n Parallax --icon=1.ico -w
+python -m nuitka --mingw64 --windows-disable-console --windows-icon-from-ico=1.ico main.py
