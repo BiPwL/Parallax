@@ -210,8 +210,6 @@ date_modified_checkbutton.place(x = 0, y = 50)
 date_created_checkbutton = Radiobutton(text="Date created", value=4, variable=lang, padx=15, pady=10)
 date_created_checkbutton.place(x = 260, y = 50)
 
-
-
 sort_file = Button(root, text="Sort", bd = 2, relief = GROOVE, state=DISABLED, command = sort_final)
 sort_file.place(x = 180, y = 90)
 
