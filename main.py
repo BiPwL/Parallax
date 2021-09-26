@@ -70,6 +70,7 @@ def name_of_folder_of_size(in_path, in_size):
     elif 1073741824 < in_size:
         return in_path + "/more than 1 GB"
 
+
 def meta_sorting_core(sorting_func):
     count_file = 0
 
